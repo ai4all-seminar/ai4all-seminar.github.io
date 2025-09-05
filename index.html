@@ -2,43 +2,384 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>AI4All Seminar</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI4All Seminar Series</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      min-height: 100vh;
+      box-shadow: 0 0 30px rgba(0,0,0,0.1);
+    }
+
+    header {
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
+      opacity: 0.3;
+    }
+
+    .banner-img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      background: #f8fafc;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #e2e8f0;
+      text-align: center;
+    }
+
+    nav a {
+      color: #4f46e5;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      margin: 0 0.25rem;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+      background: #4f46e5;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    main {
+      padding: 3rem 2rem;
+    }
+
+    .intro-section {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .intro-section h2 {
+      font-size: 2rem;
+      color: #1e293b;
+      margin-bottom: 1rem;
+    }
+
+    .intro-section p {
+      font-size: 1.1rem;
+      color: #64748b;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .feature-card {
+      background: #f8fafc;
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 1px solid #e2e8f0;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1.3rem;
+      color: #1e293b;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card p {
+      color: #64748b;
+    }
+
+    .cta-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 3rem 2rem;
+      border-radius: 12px;
+      text-align: center;
+      margin: 3rem 0;
+    }
+
+    .cta-section h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      background: rgba(255,255,255,0.2);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .btn:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-2px);
+    }
+
+    .quick-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 3rem 0;
+    }
+
+    .quick-link {
+      background: white;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .quick-link:hover {
+      border-color: #4f46e5;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(79, 70, 229, 0.1);
+    }
+
+    .quick-link-icon {
+      font-size: 2rem;
+      color: #4f46e5;
+    }
+
+    .quick-link-content h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: #1e293b;
+    }
+
+    .quick-link-content p {
+      font-size: 0.9rem;
+      color: #64748b;
+    }
+
+    footer {
+      background: #1e293b;
+      color: #94a3b8;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .social-links {
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .social-links a:hover {
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      
+      header p {
+        font-size: 1rem;
+      }
+      
+      main {
+        padding: 2rem 1rem;
+      }
+      
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <header class="banner">
+      <img src="assets/banner.png" alt="AI4All Seminar Banner" class="banner-img">
+      <h1>AI4All Seminar Series</h1>
+      <p>Advancing Inclusive and Impactful AI Research</p>
+    </header>
 
-  <header class="banner">
-    <img src="assets/banner.png" alt="AI4All Seminar Banner" class="banner-img">
-    <h1>AI4All Seminar Series</h1>
-    <p>Advancing Inclusive and Impactful AI Research</p>
-  </header>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="about.html">About</a>
+      <a href="upcoming.html">Upcoming Talks</a>
+      <a href="past.html">Past Talks</a>
+      <a href="organizers.html">Organizers</a>
+      <a href="contact.html">Contact</a>
+    </nav>
 
-  <nav>
-    <a href="index.html">Home</a> |
-    <a href="about.html">About</a> |
-    <a href="upcoming.html">Upcoming Talks</a> |
-    <a href="past.html">Past Talks</a> |
-    <a href="organizers.html">Organizers</a> |
-    <a href="contact.html">Contact</a>
-  </nav>
+    <main>
+      <section class="intro-section">
+        <h2>About The Seminar</h2>
+        <p>
+          The AI4All Seminar Series is a dynamic forum that brings together researchers, practitioners, and thought leaders 
+          to explore cutting-edge developments in artificial intelligence. Our mission is to foster inclusive innovation 
+          and promote AI research that benefits all communities, addressing both technical excellence and societal impact.
+        </p>
+      </section>
 
-  <main>
-    <h2>Welcome</h2>
-    <p>
-      The <b>AI4All Seminar Series</b> brings together researchers and practitioners to 
-      discuss cutting-edge AI topics for inclusive and impactful innovation.
-    </p>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🌍</div>
+          <h3>Global Perspective</h3>
+          <p>Featuring speakers from diverse backgrounds and institutions worldwide, bringing varied perspectives to AI research.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🤝</div>
+          <h3>Inclusive Community</h3>
+          <p>Building bridges across different communities and ensuring AI research serves everyone, everywhere.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🚀</div>
+          <h3>Cutting-Edge Research</h3>
+          <p>Showcasing the latest breakthroughs in AI, from foundational research to real-world applications.</p>
+        </div>
+      </div>
 
-    <ul>
-      <li>📢 <a href="upcoming.html">Upcoming Talks</a></li>
-      <li>🎥 <a href="past.html">Past Talks</a></li>
-      <li>👥 <a href="organizers.html">Organizers</a></li>
-    </ul>
-  </main>
+      <section class="cta-section">
+        <h3>Join Our Community</h3>
+        <p>Connect with fellow researchers, attend live seminars, and stay updated with the latest in AI research.</p>
+        <div class="cta-buttons">
+          <a href="#" class="btn">📧 Join Mailing List</a>
+          <a href="#" class="btn">💬 Discord Community</a>
+          <a href="#" class="btn">🎥 YouTube Channel</a>
+          <a href="#" class="btn">🔗 Zoom Meetings</a>
+        </div>
+      </section>
 
-  <footer>
-    <p>© 2025 AI4All Seminar | Hosted on GitHub Pages</p>
-  </footer>
+      <div class="quick-links">
+        <a href="upcoming.html" class="quick-link">
+          <div class="quick-link-icon">📅</div>
+          <div class="quick-link-content">
+            <h4>Upcoming Talks</h4>
+            <p>Discover our upcoming seminars and register for live sessions</p>
+          </div>
+        </a>
+        
+        <a href="past.html" class="quick-link">
+          <div class="quick-link-icon">🎥</div>
+          <div class="quick-link-content">
+            <h4>Past Recordings</h4>
+            <p>Access recordings and materials from previous seminars</p>
+          </div>
+        </a>
+        
+        <a href="organizers.html" class="quick-link">
+          <div class="quick-link-icon">👥</div>
+          <div class="quick-link-content">
+            <h4>Meet the Team</h4>
+            <p>Learn about the organizers behind the AI4All Seminar Series</p>
+          </div>
+        </a>
+        
+        <a href="contact.html" class="quick-link">
+          <div class="quick-link-icon">🎤</div>
+          <div class="quick-link-content">
+            <h4>Present Your Work</h4>
+            <p>Interested in presenting? Get in touch with our organizing team</p>
+          </div>
+        </a>
+      </div>
+    </main>
 
+    <footer>
+      <p>© 2025 AI4All Seminar Series | Advancing Inclusive AI Research</p>
+      <div class="social-links">
+        <a href="#">Email</a>
+        <a href="#">Discord</a>
+        <a href="#">YouTube</a>
+        <a href="#">Twitter</a>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>
