@@ -1,38 +1,563 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>About | AI4All Seminar</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - AI4All Seminar Series</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      min-height: 100vh;
+      box-shadow: 0 0 30px rgba(0,0,0,0.1);
+    }
+
+    header {
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
+      opacity: 0.3;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      background: #f8fafc;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #e2e8f0;
+      text-align: center;
+    }
+
+    nav a {
+      color: #4f46e5;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      margin: 0 0.25rem;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover, nav a.active {
+      background: #4f46e5;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    main {
+      padding: 3rem 2rem;
+    }
+
+    .section {
+      margin-bottom: 4rem;
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      color: #1e293b;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .section h3 {
+      font-size: 1.4rem;
+      color: #4f46e5;
+      margin-bottom: 1rem;
+      margin-top: 2rem;
+    }
+
+    .section p {
+      font-size: 1.1rem;
+      color: #64748b;
+      margin-bottom: 1.5rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .mission-statement {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 3rem 2rem;
+      border-radius: 12px;
+      text-align: center;
+      margin: 3rem 0;
+    }
+
+    .mission-statement h3 {
+      color: white;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .mission-statement p {
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .value-card {
+      background: #f8fafc;
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 1px solid #e2e8f0;
+    }
+
+    .value-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .value-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .value-card h4 {
+      font-size: 1.3rem;
+      color: #1e293b;
+      margin-bottom: 1rem;
+    }
+
+    .value-card p {
+      color: #64748b;
+      font-size: 1rem;
+    }
+
+    .stats-section {
+      background: #f8fafc;
+      padding: 3rem 2rem;
+      border-radius: 12px;
+      margin: 3rem 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .stat-item h4 {
+      font-size: 2.5rem;
+      color: #4f46e5;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-item p {
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    .scope-areas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .scope-item {
+      background: white;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .scope-item:hover {
+      border-color: #4f46e5;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(79, 70, 229, 0.1);
+    }
+
+    .scope-item h4 {
+      color: #4f46e5;
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .scope-item p {
+      font-size: 0.95rem;
+      color: #64748b;
+      margin: 0;
+    }
+
+    .timeline {
+      position: relative;
+      padding: 2rem 0;
+    }
+
+    .timeline-item {
+      display: flex;
+      margin-bottom: 2rem;
+      align-items: center;
+    }
+
+    .timeline-date {
+      background: #4f46e5;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: 600;
+      min-width: 120px;
+      text-align: center;
+      margin-right: 2rem;
+    }
+
+    .timeline-content {
+      flex: 1;
+      background: #f8fafc;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid #4f46e5;
+    }
+
+    .timeline-content h4 {
+      color: #1e293b;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-content p {
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    .cta-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 3rem 2rem;
+      border-radius: 12px;
+      text-align: center;
+      margin: 3rem 0;
+    }
+
+    .cta-section h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: white;
+    }
+
+    .btn {
+      background: rgba(255,255,255,0.2);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      display: inline-block;
+      margin: 0.5rem;
+    }
+
+    .btn:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-2px);
+    }
+
+    footer {
+      background: #1e293b;
+      color: #94a3b8;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .social-links {
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .social-links a:hover {
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      
+      main {
+        padding: 2rem 1rem;
+      }
+      
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .timeline-item {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .timeline-date {
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <header>
+      <h1>About AI4All Seminar</h1>
+      <p>Learn about our mission, values, and vision for inclusive AI research</p>
+    </header>
 
-<header class="banner">
-  <img src="assets/banner.png" alt="AI4All Seminar Banner" class="banner-img">
-  <h1>AI4All Seminar</h1>
-</header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html" class="active">About</a>
+      <a href="upcoming.html">Upcoming Talks</a>
+      <a href="past.html">Past Talks</a>
+      <a href="organizers.html">Organizers</a>
+      <a href="contact.html">Contact</a>
+    </nav>
 
-<nav>
-  <a href="index.html">Home</a> |
-  <a href="about.html">About</a> |
-  <a href="upcoming.html">Upcoming Talks</a> |
-  <a href="past.html">Past Talks</a> |
-  <a href="organizers.html">Organizers</a> |
-  <a href="contact.html">Contact</a>
-</nav>
+    <main>
+      <section class="section">
+        <h2>Our Story</h2>
+        <p>
+          The AI4All Seminar Series was founded with a simple yet powerful vision: to create a platform where 
+          artificial intelligence research serves everyone, everywhere. In an era where AI is reshaping every 
+          aspect of human society, we believe that diverse perspectives and inclusive approaches are not just 
+          beneficial—they're essential for building AI systems that truly benefit all of humanity.
+        </p>
+        <p>
+          Our seminar series brings together researchers, practitioners, industry leaders, and emerging voices 
+          from around the world to share cutting-edge research, discuss ethical implications, and explore how 
+          AI can be developed and deployed in ways that promote equity, accessibility, and social good.
+        </p>
+      </section>
 
-<main>
-  <h2>About</h2>
-  <p>
-    The <b>AI4All Seminar Series</b> provides an open academic forum for presenting 
-    and discussing advances in artificial intelligence. 
-    Our mission is to promote <i>inclusive, accessible, and impactful AI research</i>.
-  </p>
-</main>
+      <div class="mission-statement">
+        <h3>Our Mission</h3>
+        <p>
+          To foster a global community of AI researchers and practitioners committed to developing inclusive, 
+          ethical, and impactful artificial intelligence that addresses real-world challenges and serves the 
+          diverse needs of all communities.
+        </p>
+      </div>
 
-<footer>
-  <p>© 2025 AI4All Seminar | Hosted on GitHub Pages</p>
-</footer>
+      <section class="section">
+        <h2>Core Values</h2>
+        <div class="values-grid">
+          <div class="value-card">
+            <div class="value-icon">🌍</div>
+            <h4>Inclusivity</h4>
+            <p>We champion diverse voices and perspectives in AI research, ensuring that different backgrounds, experiences, and viewpoints are represented and valued.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">⚖️</div>
+            <h4>Ethical AI</h4>
+            <p>We promote responsible AI development that considers societal impact, fairness, transparency, and accountability in all research and applications.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">🤝</div>
+            <h4>Collaboration</h4>
+            <p>We believe in the power of interdisciplinary collaboration, bringing together researchers from computer science, social sciences, humanities, and beyond.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">🚀</div>
+            <h4>Innovation</h4>
+            <p>We showcase cutting-edge research that pushes the boundaries of AI while maintaining focus on real-world applications and societal benefit.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">📚</div>
+            <h4>Education</h4>
+            <p>We are committed to knowledge sharing, mentorship, and creating opportunities for learning and growth within the AI community.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">🔬</div>
+            <h4>Open Science</h4>
+            <p>We support open research practices, reproducibility, and the democratization of AI knowledge and tools for the global research community.</p>
+          </div>
+        </div>
+      </section>
 
+      <section class="stats-section">
+        <h2>Our Impact</h2>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <h4>50+</h4>
+            <p>Distinguished Speakers</p>
+          </div>
+          <div class="stat-item">
+            <h4>25+</h4>
+            <p>Countries Represented</p>
+          </div>
+          <div class="stat-item">
+            <h4>10K+</h4>
+            <p>Community Members</p>
+          </div>
+          <div class="stat-item">
+            <h4>100+</h4>
+            <p>Research Presentations</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Research Scope</h2>
+        <p>
+          Our seminar series covers a broad spectrum of AI research areas, with special emphasis on work that 
+          advances inclusive and impactful artificial intelligence:
+        </p>
+        <div class="scope-areas">
+          <div class="scope-item">
+            <h4>Fairness & Bias</h4>
+            <p>Research on detecting, measuring, and mitigating bias in AI systems across different demographics and use cases.</p>
+          </div>
+          <div class="scope-item">
+            <h4>AI for Social Good</h4>
+            <p>Applications of AI to address societal challenges including healthcare, education, climate change, and poverty.</p>
+          </div>
+          <div class="scope-item">
+            <h4>Responsible AI</h4>
+            <p>Frameworks and methodologies for ethical AI development, deployment, and governance.</p>
+          </div>
+          <div class="scope-item">
+            <h4>Accessibility</h4>
+            <p>AI technologies that improve accessibility and inclusion for people with disabilities and underserved communities.</p>
+          </div>
+          <div class="scope-item">
+            <h4>Human-AI Interaction</h4>
+            <p>Research on how humans and AI systems can work together effectively and ethically.</p>
+          </div>
+          <div class="scope-item">
+            <h4>Explainable AI</h4>
+            <p>Techniques for making AI systems more transparent, interpretable, and trustworthy.</p>
+          </div>
+          <div class="scope-item">
+            <h4>Privacy & Security</h4>
+            <p>Methods for protecting privacy and ensuring security in AI systems and data processing.</p>
+          </div>
+          <div class="scope-item">
+            <h4>Global AI Perspectives</h4>
+            <p>Research from diverse geographical and cultural contexts, addressing local and global AI challenges.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Our Journey</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">2024</div>
+            <div class="timeline-content">
+              <h4>Series Launch</h4>
+              <p>AI4All Seminar Series officially launched with our inaugural presentation on "Building Inclusive AI: Challenges and Opportunities"</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">Q2 2024</div>
+            <div class="timeline-content">
+              <h4>Global Expansion</h4>
+              <p>Expanded to include speakers from over 15 countries, establishing our commitment to global perspectives in AI research</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">Q3 2024</div>
+            <div class="timeline-content">
+              <h4>Community Growth</h4>
+              <p>Reached 5,000+ active community members across our various platforms and established mentorship programs</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">Q4 2024</div>
+            <div class="timeline-content">
+              <h4>Research Partnerships</h4>
+              <p>Formed partnerships with leading universities and research institutions to promote collaborative research</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2025</div>
+            <div class="timeline-content">
+              <h4>Ongoing Innovation</h4>
+              <p>Continuing to evolve our platform with new formats, interactive sessions, and community-driven initiatives</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="cta-section">
+        <h3>Join Our Mission</h3>
+        <p>
+          Be part of a community that's shaping the future of AI research. Whether you're a researcher, 
+          practitioner, student, or simply passionate about ethical AI, there's a place for you in our community.
+        </p>
+        <a href="contact.html" class="btn">Get Involved</a>
+        <a href="upcoming.html" class="btn">Attend a Seminar</a>
+        <a href="#" class="btn">Join Our Discord</a>
+      </div>
+    </main>
+
+    <footer>
+      <p>© 2025 AI4All Seminar Series | Advancing Inclusive AI Research</p>
+      <div class="social-links">
+        <a href="#">Email</a>
+        <a href="#">Discord</a>
+        <a href="#">YouTube</a>
+        <a href="#">Twitter</a>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>
